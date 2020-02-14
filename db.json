@@ -1,0 +1,39 @@
+{
+  "martians_list": [
+    {
+      "id": 1,
+      "name": "Martian Firma",
+      "budget": "7000",
+      "budget_spent": 451.3754,
+      "date_of_first_purchase": "2120-02-20"
+    },
+    {
+      "id": 2,
+      "name": "Solar Firma",
+      "budget": 3123.22,
+      "budget_spent": 451.3754,
+      "date_of_first_purchase": "2120-02-20"
+    },
+    {
+      "id": 3,
+      "name": "Lunar Firma",
+      "budget": 22100,
+      "budget_spent": 451.3754,
+      "date_of_first_purchase": "2120-03-10"
+    },
+    {
+      "id": 4,
+      "name": "Nebula Firma",
+      "budget": 45000,
+      "budget_spent": 451.3754,
+      "date_of_first_purchase": "2120-04-14"
+    },
+    {
+      "id": 5,
+      "name": "Stars Firma",
+      "budget": 35000,
+      "budget_spent": 451.3754,
+      "date_of_first_purchase": "2120-05-14"
+    }
+  ]
+}

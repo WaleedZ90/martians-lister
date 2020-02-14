@@ -1,14 +1,14 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { object, number } from "yup";
+import { object, number, ref } from "yup";
 import "./styles.scss";
 import InputText from "../InputText";
 import Button from "../Button";
 
 const validationSchema = object().shape({
-	budget: number("Value entered must be a number").required(
-		"This field is required"
-	)
+	budget: number("Value entered must be a number")
+		.min(ref("budget_spent"), "value cannot be less than budget spent")
+		.required("This field is required")
 });
 
 const MartianForm = ({ item, onItemEdit, onCancel }) => {
