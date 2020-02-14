@@ -1,26 +1,21 @@
 import React from "react";
-import logo from "./logo.svg";
+import logo from "./assets/images/billie_logo_large.svg";
 import "./App.scss";
+import MartiansList from "./components/MartiansList";
 
-function App() {
+const App = () => {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
+		<main className="app">
+			<header className="app-header">
+				<img src={logo} className="app-header-logo" alt="logo" />
 			</header>
-		</div>
+			<section className="app-body">
+				<h2>Martians List</h2>
+				<MartiansList />
+			</section>
+			<footer className="app-footer"></footer>
+		</main>
 	);
-}
+};
 
 export default App;
