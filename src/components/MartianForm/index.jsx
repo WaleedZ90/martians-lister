@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import { object, number, ref } from "yup";
 import "./styles.scss";
 import InputText from "../InputText";
 import Button from "../Button";
+import { toEuroCurrency } from "../../utilities/Number";
 
 const validationSchema = object().shape({
 	budget: number("Value entered must be a number")
@@ -12,6 +13,8 @@ const validationSchema = object().shape({
 });
 
 const MartianForm = ({ item, onItemEdit, onCancel }) => {
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
 	const onSubmit = (values, actions) => {
 		const editedItem = {
 			...item,
@@ -27,28 +30,55 @@ const MartianForm = ({ item, onItemEdit, onCancel }) => {
 			initialValues={item}
 			onSubmit={onSubmit}
 		>
-			{({
-				values,
-				errors,
-				touched,
-				isSubmitting,
-				setFieldValue,
-				setFieldTouched,
-				handleChange,
-				handleBlur
-			}) => (
-				<Form>
-					<InputText
-						id="martianFormId"
-						name="budget"
-						value={values.budget}
-						hasError={errors.budget != null && touched.budget}
-						errorMessage={errors.budget}
-						onChange={handleChange}
-						onBlur={handleBlur}
-					/>
-					<Button type="submit">Save changes</Button>
-					<Button onClick={onCancel}>Cancel</Button>
+			{({ values, errors, touched, handleChange, handleBlur }) => (
+				<Form className="martian-form">
+					{!isSubmitting && (
+						<React.Fragment>
+							<p>{item.name}</p>
+							<InputText
+								id="martianFormId"
+								name="budget"
+								value={values.budget}
+								hasError={errors.budget != null && touched.budget}
+								errorMessage={errors.budget}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								label={"Budget"}
+							/>
+						</React.Fragment>
+					)}
+
+					{isSubmitting && (
+						<aside className="martian-form-confirmation">
+							<p>
+								Are you sure you want to change the total budget to{" "}
+								<strong>{toEuroCurrency(values.budget)}</strong>?
+							</p>
+						</aside>
+					)}
+
+					<div className="martian-form-buttons">
+						{!isSubmitting && (
+							<React.Fragment>
+								<Button
+									id="saveButton"
+									type="button"
+									onClick={() => errors.budget == null && setIsSubmitting(true)}
+								>
+									Save
+								</Button>
+								<Button onClick={onCancel}>Cancel</Button>
+							</React.Fragment>
+						)}
+						{isSubmitting && (
+							<React.Fragment>
+								<Button id="submitButton" type="submit">
+									Confirm
+								</Button>
+								<Button onClick={() => setIsSubmitting(false)}>Cancel</Button>
+							</React.Fragment>
+						)}
+					</div>
 				</Form>
 			)}
 		</Formik>

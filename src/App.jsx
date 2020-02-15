@@ -56,7 +56,12 @@ const App = () => {
 				<MartiansList martians={martiansList} onItemClick={onMartianClicked} />
 			</section>
 			{selectedMartian && (
-				<ModalWindow isOpen={showModal} onClose={resetState}>
+				<ModalWindow
+					closeOnEsc={false}
+					closeOnOverlayClick={false}
+					isOpen={showModal}
+					onClose={resetState}
+				>
 					<MartianForm
 						item={selectedMartian}
 						onItemEdit={onMartianEdited}

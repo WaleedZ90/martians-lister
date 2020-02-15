@@ -13,13 +13,15 @@ const InputText = ({
 	type = "text",
 	value,
 	name,
-	autoComplete = "off"
+	autoComplete = "off",
+	label
 }) => {
 	return (
 		<div
 			id={id}
 			className={classNames("input", hasError && "input--error", className)}
 		>
+			{label && <label htmlFor={name}>{label}</label>}
 			<input
 				name={name}
 				id={`${id}__input`}

@@ -1,6 +1,7 @@
 import React from "react";
 import { toLongDateFormat } from "../../utilities/Date";
 import { toEuroCurrency } from "../../utilities/Number";
+import Button from "../Button";
 
 import "./styles.scss";
 
@@ -9,10 +10,19 @@ const MartiansList = ({ onItemClick, martians = [] }) => {
 		return (
 			<div key={item.id} className="martians-list-item">
 				<h3>{item.name}</h3>
-				<p>{toEuroCurrency(item.budget)}</p>
-				<p>{toEuroCurrency(item.budget_spent)}</p>
-				<p>{toLongDateFormat(item.date_of_first_purchase)}</p>
-				{onItemClick && <button onClick={() => onItemClick(item)}>View</button>}
+				<p>
+					<i>Budget</i>
+					<span>{toEuroCurrency(item.budget)}</span>
+				</p>
+				<p>
+					<i>Budget Spent</i>
+					<span>{toEuroCurrency(item.budget_spent)}</span>
+				</p>
+				<p>
+					<i>Date of Purchase</i>
+					<span>{toLongDateFormat(item.date_of_first_purchase)}</span>
+				</p>
+				{onItemClick && <Button onClick={() => onItemClick(item)}>View</Button>}
 			</div>
 		);
 	};

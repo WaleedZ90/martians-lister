@@ -1,0 +1,26 @@
+.martians-list {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+
+	&-item {
+		p {
+			i {
+				font-size: 15px;
+				opacity: 0.7;
+				font-style: normal;
+			}
+
+			span {
+				font-size: 18px;
+				display: block;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 1200px) {
+	.martians-list {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}

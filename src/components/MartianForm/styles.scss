@@ -1,0 +1,23 @@
+.martian-form {
+	p {
+		font-weight: 700;
+		font-size: 20px;
+		margin: 0;
+	}
+
+	&-buttons {
+		display: flex;
+		justify-content: space-between;
+
+		.button {
+			width: 48%;
+		}
+	}
+
+	aside {
+		p {
+			font-weight: 400;
+			margin-bottom: 10px;
+		}
+	}
+}

@@ -18,7 +18,7 @@ const Button = ({
 			onClick={onClick}
 			disabled={disabled}
 		>
-			<div>{children}</div>
+			{children}
 		</button>
 	);
 };
