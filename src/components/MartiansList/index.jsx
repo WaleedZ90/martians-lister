@@ -22,7 +22,7 @@ const MartiansList = ({ onItemClick, martians = [] }) => {
 					<i>Date of Purchase</i>
 					<span>{toLongDateFormat(item.date_of_first_purchase)}</span>
 				</p>
-				{onItemClick && <Button onClick={() => onItemClick(item)}>View</Button>}
+				{onItemClick && <Button onClick={() => onItemClick(item)}>Edit</Button>}
 			</div>
 		);
 	};

@@ -6,12 +6,6 @@ import InputText from "../InputText";
 import Button from "../Button";
 import { toEuroCurrency } from "../../utilities/Number";
 
-const validationSchema = object().shape({
-	budget: number("Value entered must be a number")
-		.min(ref("budget_spent"), "value cannot be less than budget spent")
-		.required("This field is required")
-});
-
 const MartianForm = ({ item, onItemEdit, onCancel }) => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -23,15 +17,29 @@ const MartianForm = ({ item, onItemEdit, onCancel }) => {
 		onItemEdit(editedItem);
 	};
 
+	const onReset = () => {
+		console.log("form is reseting");
+	};
+
 	return (
 		<Formik
 			enableReinitialize
-			validationSchema={validationSchema}
+			validationSchema={object().shape({
+				budget: number("Value entered must be a number")
+					.min(
+						ref("budget_spent"),
+						`value cannot be less than budget spent ${toEuroCurrency(
+							item.budget_spent
+						)}`
+					)
+					.required("This field is required")
+			})}
 			initialValues={item}
 			onSubmit={onSubmit}
+			onReset={onReset}
 		>
-			{({ values, errors, touched, handleChange, handleBlur }) => (
-				<Form className="martian-form">
+			{({ values, errors, touched, handleChange, handleBlur, handleReset }) => (
+				<Form id="martianForm" className="martian-form" onReset={handleReset}>
 					{!isSubmitting && (
 						<React.Fragment>
 							<p>{item.name}</p>
@@ -44,6 +52,7 @@ const MartianForm = ({ item, onItemEdit, onCancel }) => {
 								onChange={handleChange}
 								onBlur={handleBlur}
 								label={"Budget"}
+								className="martian-form-budget"
 							/>
 						</React.Fragment>
 					)}

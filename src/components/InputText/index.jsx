@@ -31,10 +31,13 @@ const InputText = ({
 				value={value || ""}
 				disabled={disabled}
 				autoComplete={autoComplete}
+				data-testid="shared-input-textbox"
 			/>
 
 			{hasError && errorMessage && (
-				<span className="error-text">{errorMessage}</span>
+				<span data-testid="error-message" className="error-text">
+					{errorMessage}
+				</span>
 			)}
 		</div>
 	);
